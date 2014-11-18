@@ -29,35 +29,19 @@ public class Customer {
     String result = "Rental Record for " + getName() + "\n";
 
     while (rentals.hasMoreElements()) {
-      double thisAmount = STARTING_AMOUNT;
-      Rental each = (Rental) rentals.nextElement();
+      Rental rental = (Rental) rentals.nextElement();
 
-      // determines the amount for each line
-      switch (each.getMovie().getPriceCode()) {
-        case Movie.REGULAR:
-          thisAmount += TWO_DAYS;
-          if (each.getDaysRented() > TWO_DAYS)
-            thisAmount += (each.getDaysRented() - TWO_DAYS) * ONE_AND_HALF_DAY;
-          break;
-        case Movie.NEW_RELEASE:
-          thisAmount += each.getDaysRented() * THREE_DAYS;
-          break;
-        case Movie.CHILDREN:
-          thisAmount += ONE_AND_HALF_DAY;
-          if (each.getDaysRented() > THREE_DAYS)
-            thisAmount += (each.getDaysRented() - THREE_DAYS) * ONE_AND_HALF_DAY;
-          break;
-      }
-
+      double rentalAmount = findAmountForRental(rental);
       frequentRenterPoints++;
 
-      if (each.getMovie().getPriceCode() == Movie.NEW_RELEASE
-        && each.getDaysRented() > ONE_DAY)
+      if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE
+        && rental.getDaysRented() > ONE_DAY) {
         frequentRenterPoints++;
+      }
 
-      result += "\t" + each.getMovie().getTitle() + "\t"
-        + String.valueOf(thisAmount) + "\n";
-      totalAmount += thisAmount;
+      result += "\t" + rental.getMovie().getTitle() + "\t"
+        + String.valueOf(rentalAmount) + "\n";
+      totalAmount += rentalAmount;
 
     }
 
@@ -66,5 +50,27 @@ public class Customer {
 
 
     return result;
+  }
+
+  private double findAmountForRental(Rental rental) {
+    double amount = STARTING_AMOUNT;
+    switch (rental.getMovie().getPriceCode()) {
+      case Movie.REGULAR:
+        amount += TWO_DAYS;
+        if (rental.getDaysRented() > TWO_DAYS) {
+          amount += (rental.getDaysRented() - TWO_DAYS) * ONE_AND_HALF_DAY;
+        }
+        break;
+      case Movie.NEW_RELEASE:
+        amount += rental.getDaysRented() * THREE_DAYS;
+        break;
+      case Movie.CHILDREN:
+        amount += ONE_AND_HALF_DAY;
+        if (rental.getDaysRented() > THREE_DAYS) {
+          amount += (rental.getDaysRented() - THREE_DAYS) * ONE_AND_HALF_DAY;
+        }
+        break;
+    }
+    return amount;
   }
 }
