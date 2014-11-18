@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 public class VideoStoreTest {
 
 
+  public static final int FOUR_DAYS = 4;
   private Customer customer;
   private static final int THREE_DAYS = 3;
   private static final int ONE_DAY = 1;
@@ -33,6 +34,12 @@ public class VideoStoreTest {
   public void singleChildrenStatement() {
     customer.addRental(new Rental(new Movie("The Tiger Movie", Movie.CHILDREN), THREE_DAYS));
     assertEquals("Rental Record for Fred\n\tThe Tiger Movie\t1.5\nYou owed 1.5\nYou earned 1 frequent renter points\n", customer.statement());
+  }
+
+  @Test
+  public void childrenMovieOverThreeDaysRental() {
+    customer.addRental(new Rental(new Movie("Lion King", Movie.CHILDREN), FOUR_DAYS));
+    assertEquals("Rental Record for Fred\n\tLion King\t3.0\nYou owed 3.0\nYou earned 1 frequent renter points\n", customer.statement());
   }
 
   @Test
