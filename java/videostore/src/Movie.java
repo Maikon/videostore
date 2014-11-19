@@ -1,14 +1,8 @@
 public abstract class Movie {
   protected String title;
-  protected int priceCode;
 
-  public Movie(int priceCode, String title) {
-    this.priceCode = priceCode;
+  public Movie(String title) {
     this.title = title;
-  }
-
-  public int getPriceCode() {
-    return priceCode;
   }
 
   public String getTitle() {
