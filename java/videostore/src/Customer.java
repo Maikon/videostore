@@ -31,7 +31,7 @@ public class Customer {
     while (rentals.hasMoreElements()) {
       Rental rental = (Rental) rentals.nextElement();
 
-      double rentalAmount = findAmountForRental(rental);
+      double rentalAmount = rental.getAmountForMovie();
       frequentRenterPoints++;
 
       if (rental.getMovie().getPriceCode() == NewReleaseMovie.PRICE_CODE
@@ -48,11 +48,6 @@ public class Customer {
     result += "You owed " + String.valueOf(totalAmount) + "\n";
     result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
 
-
     return result;
-  }
-
-  private double findAmountForRental(Rental rental) {
-    return rental.getAmountForMovie();
   }
 }
