@@ -21,4 +21,11 @@ public class RentalTest {
     Rental rental = new Rental(movie, THREE_DAYS_RENTED);
     assertThat(rental.getAmountForMovie(), is(3.5));
   }
+
+  @Test
+  public void getAmountOwedForNewReleaseMovie() {
+    NewReleaseMovie movie = new NewReleaseMovie("Interstellar");
+    Rental rental = new Rental(movie, ONE_DAY_RENTED);
+    assertThat(rental.getAmountForMovie(), is(3.0));
+  }
 }
