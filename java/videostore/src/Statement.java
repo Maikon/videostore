@@ -15,10 +15,12 @@ public class Statement {
       result = getStatementBody(result, rental, rentalAmount);
       totalAmount += rentalAmount;
     }
+    return getStatementFooter(totalAmount, frequentRenterPoints, result);
+  }
 
+  private String getStatementFooter(double totalAmount, int frequentRenterPoints, String result) {
     result += "You owed " + String.valueOf(totalAmount) + "\n";
     result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
-
     return result;
   }
 
