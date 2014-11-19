@@ -6,11 +6,14 @@ import static org.junit.Assert.assertEquals;
 public class VideoStoreTest {
 
 
-  public static final int FOUR_DAYS = 4;
+  private static final NewReleaseMovie NEW_RELEASE_MOVIE = new NewReleaseMovie("Interstellar");
+  private static final ChildrenMovie CHILDREN_MOVIE = new ChildrenMovie("Winnie the Pooh");
+  public static final RegularMovie REGULAR_MOVIE = new RegularMovie("The Matrix");
   private Customer customer;
-  private static final int THREE_DAYS = 3;
   private static final int ONE_DAY = 1;
   private static final int TWO_DAYS = 2;
+  private static final int THREE_DAYS = 3;
+  private static final int FOUR_DAYS = 4;
 
   @Before
   public void setUp() {
@@ -18,36 +21,29 @@ public class VideoStoreTest {
   }
 
   @Test
-  public void singleNewReleaseStatement() {
-    customer.addRental(new Rental(new NewReleaseMovie("The Cell"), THREE_DAYS));
-    assertEquals("Rental Record for Fred\n\tThe Cell\t9.0\nYou owed 9.0\nYou earned 2 frequent renter points\n", customer.statement());
-  }
-
-  @Test
-  public void dualNewReleaseStatement() {
-    customer.addRental(new Rental(new NewReleaseMovie("The Cell"), THREE_DAYS));
-    customer.addRental(new Rental(new NewReleaseMovie("The Tiger Movie"), THREE_DAYS));
-    assertEquals("Rental Record for Fred\n\tThe Cell\t9.0\n\tThe Tiger Movie\t9.0\nYou owed 18.0\nYou earned 4 frequent renter points\n", customer.statement());
-  }
-
-  @Test
-  public void singleChildrenStatement() {
-    customer.addRental(new Rental(new ChildrenMovie("The Tiger Movie"), THREE_DAYS));
-    assertEquals("Rental Record for Fred\n\tThe Tiger Movie\t1.5\nYou owed 1.5\nYou earned 1 frequent renter points\n", customer.statement());
-  }
-
-  @Test
-  public void childrenMovieOverThreeDaysRental() {
-    customer.addRental(new Rental(new ChildrenMovie("Lion King"), FOUR_DAYS));
-    assertEquals("Rental Record for Fred\n\tLion King\t3.0\nYou owed 3.0\nYou earned 1 frequent renter points\n", customer.statement());
+  public void multipleMoviesStatement() {
+    customer.addRental(new Rental(CHILDREN_MOVIE, ONE_DAY));
+    customer.addRental(new Rental(NEW_RELEASE_MOVIE, FOUR_DAYS));
+    customer.addRental(new Rental(REGULAR_MOVIE, TWO_DAYS));
+    assertEquals("Rental Record for Fred\n\t" +
+                "Winnie the Pooh\t1.5\n\t" +
+                "Interstellar\t12.0\n\t" +
+                "The Matrix\t2.0\n" +
+                "You owed 15.5\n" +
+                "You earned 4 frequent renter points\n", customer.statement());
   }
 
   @Test
   public void multipleRegularStatement() {
-    customer.addRental(new Rental(new RegularMovie("Plan 9 from Outer Space"), ONE_DAY));
-    customer.addRental(new Rental(new RegularMovie("8 1/2"), TWO_DAYS));
+    customer.addRental(new Rental(REGULAR_MOVIE, ONE_DAY));
+    customer.addRental(new Rental(new RegularMovie("The Avengers"), TWO_DAYS));
     customer.addRental(new Rental(new RegularMovie("EraserHead"), THREE_DAYS));
 
-    assertEquals("Rental Record for Fred\n\tPlan 9 from Outer Space\t2.0\n\t8 1/2\t2.0\n\tEraserHead\t3.5\nYou owed 7.5\nYou earned 3 frequent renter points\n", customer.statement());
+    assertEquals("Rental Record for Fred\n\t" +
+                 "The Matrix\t2.0\n\t" +
+                 "The Avengers\t2.0\n\t" +
+                 "EraserHead\t3.5\n" +
+                 "You owed 7.5\n" +
+                 "You earned 3 frequent renter points\n", customer.statement());
   }
 }
