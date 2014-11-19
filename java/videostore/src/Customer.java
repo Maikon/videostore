@@ -34,7 +34,7 @@ public class Customer {
       double rentalAmount = findAmountForRental(rental);
       frequentRenterPoints++;
 
-      if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE
+      if (rental.getMovie().getPriceCode() == NewReleaseMovie.PRICE_CODE
         && rental.getDaysRented() > ONE_DAY) {
         frequentRenterPoints++;
       }
@@ -55,16 +55,16 @@ public class Customer {
   private double findAmountForRental(Rental rental) {
     double amount = STARTING_AMOUNT;
     switch (rental.getMovie().getPriceCode()) {
-      case Movie.REGULAR:
+      case RegularMovie.PRICE_CODE:
         amount += TWO_DAYS;
         if (rental.getDaysRented() > TWO_DAYS) {
           amount += (rental.getDaysRented() - TWO_DAYS) * ONE_AND_HALF_DAY;
         }
         break;
-      case Movie.NEW_RELEASE:
+      case NewReleaseMovie.PRICE_CODE:
         amount += rental.getDaysRented() * THREE_DAYS;
         break;
-      case Movie.CHILDREN:
+      case ChildrenMovie.PRICE_CODE:
         amount += ONE_AND_HALF_DAY;
         if (rental.getDaysRented() > THREE_DAYS) {
           amount += (rental.getDaysRented() - THREE_DAYS) * ONE_AND_HALF_DAY;
