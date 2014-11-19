@@ -1,4 +1,4 @@
-public class Movie {
+public abstract class Movie {
   protected String title;
   protected int priceCode;
 
@@ -15,7 +15,5 @@ public class Movie {
     return title;
   }
 
-  public double getAmount(int daysRented) {
-    return 0.0;
-  }
+  public abstract double getAmount(int daysRented);
 }
