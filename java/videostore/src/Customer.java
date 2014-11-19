@@ -3,9 +3,6 @@ import java.util.Enumeration;
 
 public class Customer {
   private static final int STARTING_AMOUNT = 0;
-  private static final int TWO_DAYS = 2;
-  private static final int THREE_DAYS = 3;
-  private static final double ONE_AND_HALF_DAY = 1.5;
   private static final int ONE_DAY = 1;
   private String name;
   private Vector<Rental> rentals = new Vector<Rental>();
