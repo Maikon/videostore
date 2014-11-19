@@ -62,11 +62,17 @@ public class Customer {
         amount = getAmountForNewReleaseMovie(rental);
         break;
       case ChildrenMovie.PRICE_CODE:
-        amount += ONE_AND_HALF_DAY;
-        if (rental.getDaysRented() > THREE_DAYS) {
-          amount += (rental.getDaysRented() - THREE_DAYS) * ONE_AND_HALF_DAY;
-        }
+        amount = getAmountForChildrenMovie(rental);
         break;
+    }
+    return amount;
+  }
+
+  private double getAmountForChildrenMovie(Rental rental) {
+    double amount = STARTING_AMOUNT;
+    amount += ONE_AND_HALF_DAY;
+    if (rental.getDaysRented() > THREE_DAYS) {
+      amount += (rental.getDaysRented() - THREE_DAYS) * ONE_AND_HALF_DAY;
     }
     return amount;
   }
