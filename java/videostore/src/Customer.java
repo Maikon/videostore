@@ -59,7 +59,7 @@ public class Customer {
         amount = getAmountForRegularMovie(rental);
         break;
       case NewReleaseMovie.PRICE_CODE:
-        amount += rental.getDaysRented() * THREE_DAYS;
+        amount = getAmountForNewReleaseMovie(rental);
         break;
       case ChildrenMovie.PRICE_CODE:
         amount += ONE_AND_HALF_DAY;
@@ -68,6 +68,12 @@ public class Customer {
         }
         break;
     }
+    return amount;
+  }
+
+  private double getAmountForNewReleaseMovie(Rental rental) {
+    double amount = STARTING_AMOUNT;
+    amount += rental.getDaysRented() * THREE_DAYS;
     return amount;
   }
 
