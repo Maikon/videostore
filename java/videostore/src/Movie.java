@@ -16,4 +16,8 @@ public abstract class Movie {
   }
 
   public abstract double getAmount(int daysRented);
+
+  public int getFrequentPoints() {
+    return 1;
+  }
 }
