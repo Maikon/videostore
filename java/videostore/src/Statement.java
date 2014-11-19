@@ -3,13 +3,13 @@ import java.util.Vector;
 public class Statement {
   private static final int STARTING_AMOUNT = 0;
 
-  public String print(String name, Vector<Rental> rentals) {
+  public String produce(String name, Vector<Rental> rentals) {
     double totalAmount = STARTING_AMOUNT;
     int frequentRenterPoints = STARTING_AMOUNT;
     String result = getStatementHeader(name);
     for (Rental rental : rentals) {
-      double rentalAmount = rental.getAmountForMovie();
-      frequentRenterPoints += rental.getFrequentPointsForMovie();
+      double rentalAmount = rental.getAmount();
+      frequentRenterPoints += rental.getFrequentPoints();
       result += getStatementBody(rental, rentalAmount);
       totalAmount += rentalAmount;
     }

@@ -15,31 +15,31 @@ public class RentalTest {
   @Test
   public void getAmountOwedForRegularMovie() {
     Rental rental = new Rental(REGULAR_MOVIE, ONE_DAY_RENTED);
-    assertThat(rental.getAmountForMovie(), is(2.0));
+    assertThat(rental.getAmount(), is(2.0));
   }
 
   @Test
   public void getAmountOwedForRegularMovieLongerThanTwoDays() {
     Rental rental = new Rental(REGULAR_MOVIE, THREE_DAYS_RENTED);
-    assertThat(rental.getAmountForMovie(), is(3.5));
+    assertThat(rental.getAmount(), is(3.5));
   }
 
   @Test
   public void getAmountOwedForNewReleaseMovie() {
     Rental rental = new Rental(NEW_RELEASE_MOVIE, ONE_DAY_RENTED);
-    assertThat(rental.getAmountForMovie(), is(3.0));
+    assertThat(rental.getAmount(), is(3.0));
   }
 
   @Test
   public void getAmountOwedForChildrenMovie() {
     Rental rental = new Rental(CHILDREN_MOVIE, ONE_DAY_RENTED);
-    assertThat(rental.getAmountForMovie(), is(1.5));
+    assertThat(rental.getAmount(), is(1.5));
   }
 
   @Test
   public void getAmountOwedForChildrenMovieLongerThanThreeDays() {
     Rental rental = new Rental(CHILDREN_MOVIE, SIX_DAYS_RENTED);
-    assertThat(rental.getAmountForMovie(), is(6.0));
+    assertThat(rental.getAmount(), is(6.0));
   }
 
   @Test
@@ -48,15 +48,15 @@ public class RentalTest {
     Rental rentalTwo = new Rental(CHILDREN_MOVIE, ONE_DAY_RENTED);
     Rental rentalThree = new Rental(NEW_RELEASE_MOVIE, ONE_DAY_RENTED);
 
-    assertThat(rentalOne.getFrequentPointsForMovie(), is(1));
-    assertThat(rentalTwo.getFrequentPointsForMovie(), is(1));
-    assertThat(rentalThree.getFrequentPointsForMovie(), is(1));
+    assertThat(rentalOne.getFrequentPoints(), is(1));
+    assertThat(rentalTwo.getFrequentPoints(), is(1));
+    assertThat(rentalThree.getFrequentPoints(), is(1));
   }
 
   @Test
   public void getFrequentPointsForNewReleaseMovieLongerThanThreeDays() {
     Rental rental = new Rental(NEW_RELEASE_MOVIE, SIX_DAYS_RENTED);
 
-    assertThat(rental.getFrequentPointsForMovie(), is(2));
+    assertThat(rental.getFrequentPoints(), is(2));
   }
 }

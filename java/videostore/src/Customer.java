@@ -18,6 +18,6 @@ public class Customer {
   }
 
   public String statement() {
-    return statement.print(getName(), rentals);
+    return statement.produce(getName(), rentals);
   }
 }
