@@ -28,4 +28,11 @@ public class RentalTest {
     Rental rental = new Rental(movie, ONE_DAY_RENTED);
     assertThat(rental.getAmountForMovie(), is(3.0));
   }
+
+  @Test
+  public void getAmountOwedForChildrenMovie() {
+    ChildrenMovie movie = new ChildrenMovie("Winnie the Pooh");
+    Rental rental = new Rental(movie, ONE_DAY_RENTED);
+    assertThat(rental.getAmountForMovie(), is(1.5));
+  }
 }

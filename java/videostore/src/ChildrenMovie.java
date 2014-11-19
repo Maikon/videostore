@@ -5,4 +5,9 @@ public class ChildrenMovie extends Movie {
   public ChildrenMovie(String title) {
     super(PRICE_CODE, title);
   }
+
+  @Override
+  public double getAmount(int daysRented) {
+    return 1.5;
+  }
 }
