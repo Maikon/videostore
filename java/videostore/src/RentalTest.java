@@ -7,6 +7,7 @@ public class RentalTest {
 
   public static final int ONE_DAY_RENTED = 1;
   public static final int THREE_DAYS_RENTED = 3;
+  public static final int SIX_DAYS_RENTED = 6;
 
   @Test
   public void getAmountOwedForRegularMovie() {
@@ -34,5 +35,12 @@ public class RentalTest {
     ChildrenMovie movie = new ChildrenMovie("Winnie the Pooh");
     Rental rental = new Rental(movie, ONE_DAY_RENTED);
     assertThat(rental.getAmountForMovie(), is(1.5));
+  }
+
+  @Test
+  public void getAmountOwedForChildrenMovieLongerThanThreeDays() {
+    ChildrenMovie movie = new ChildrenMovie("Winnie the Pooh");
+    Rental rental = new Rental(movie, SIX_DAYS_RENTED);
+    assertThat(rental.getAmountForMovie(), is(6.0));
   }
 }
