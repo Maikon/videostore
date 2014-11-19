@@ -15,4 +15,8 @@ public class Rental {
   public Movie getMovie() {
     return movie;
   }
+
+  public double getAmountForMovie() {
+    return movie.getAmount();
+  }
 }

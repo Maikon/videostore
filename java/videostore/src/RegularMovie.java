@@ -6,4 +6,8 @@ public class RegularMovie extends Movie {
     super(PRICE_CODE, title);
   }
 
+  @Override
+  public double getAmount() {
+    return 2.0;
+  }
 }

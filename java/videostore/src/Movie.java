@@ -14,4 +14,8 @@ public class Movie {
   public String getTitle() {
     return title;
   }
+
+  public double getAmount() {
+    return 0.0;
+  }
 }
