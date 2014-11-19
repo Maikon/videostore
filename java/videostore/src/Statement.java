@@ -7,27 +7,22 @@ public class Statement {
     double totalAmount = STARTING_AMOUNT;
     int frequentRenterPoints = STARTING_AMOUNT;
     String result = getStatementHeader(name);
-
     for (Rental rental : rentals) {
       double rentalAmount = rental.getAmountForMovie();
       frequentRenterPoints += rental.getFrequentPointsForMovie();
-
-      result = getStatementBody(result, rental, rentalAmount);
+      result += getStatementBody(rental, rentalAmount);
       totalAmount += rentalAmount;
     }
-    return getStatementFooter(totalAmount, frequentRenterPoints, result);
-  }
-
-  private String getStatementFooter(double totalAmount, int frequentRenterPoints, String result) {
-    result += "You owed " + String.valueOf(totalAmount) + "\n";
-    result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
+    result += getStatementFooter(totalAmount, frequentRenterPoints);
     return result;
   }
 
-  private String getStatementBody(String result, Rental rental, double rentalAmount) {
-    result += "\t" + rental.getMovieTitle() + "\t"
-      + String.valueOf(rentalAmount) + "\n";
-    return result;
+  private String getStatementFooter(double totalAmount, int frequentRenterPoints) {
+    return "You owed " + totalAmount + "\n" + "You earned " + frequentRenterPoints + " frequent renter points\n";
+  }
+
+  private String getStatementBody(Rental rental, double rentalAmount) {
+    return "\t" + rental.getMovieTitle() + "\t" + rentalAmount + "\n";
   }
 
   private String getStatementHeader(String name) {
