@@ -15,7 +15,7 @@ public class Movie {
     return title;
   }
 
-  public double getAmount() {
+  public double getAmount(int daysRented) {
     return 0.0;
   }
 }
