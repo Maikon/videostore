@@ -12,14 +12,19 @@ public class Statement {
       double rentalAmount = rental.getAmountForMovie();
       frequentRenterPoints += rental.getFrequentPointsForMovie();
 
-      result += "\t" + rental.getMovieTitle() + "\t"
-        + String.valueOf(rentalAmount) + "\n";
+      result = getStatementBody(result, rental, rentalAmount);
       totalAmount += rentalAmount;
     }
 
     result += "You owed " + String.valueOf(totalAmount) + "\n";
     result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
 
+    return result;
+  }
+
+  private String getStatementBody(String result, Rental rental, double rentalAmount) {
+    result += "\t" + rental.getMovieTitle() + "\t"
+      + String.valueOf(rentalAmount) + "\n";
     return result;
   }
 
