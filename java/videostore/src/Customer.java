@@ -56,10 +56,7 @@ public class Customer {
     double amount = STARTING_AMOUNT;
     switch (rental.getMovie().getPriceCode()) {
       case RegularMovie.PRICE_CODE:
-        amount += TWO_DAYS;
-        if (rental.getDaysRented() > TWO_DAYS) {
-          amount += (rental.getDaysRented() - TWO_DAYS) * ONE_AND_HALF_DAY;
-        }
+        amount = getAmountForRegularMovie(rental);
         break;
       case NewReleaseMovie.PRICE_CODE:
         amount += rental.getDaysRented() * THREE_DAYS;
@@ -70,6 +67,15 @@ public class Customer {
           amount += (rental.getDaysRented() - THREE_DAYS) * ONE_AND_HALF_DAY;
         }
         break;
+    }
+    return amount;
+  }
+
+  private double getAmountForRegularMovie(Rental rental) {
+    double amount = STARTING_AMOUNT;
+    amount += TWO_DAYS;
+    if (rental.getDaysRented() > TWO_DAYS) {
+      amount += (rental.getDaysRented() - TWO_DAYS) * ONE_AND_HALF_DAY;
     }
     return amount;
   }
