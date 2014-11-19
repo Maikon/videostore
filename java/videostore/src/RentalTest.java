@@ -58,4 +58,12 @@ public class RentalTest {
     assertThat(rentalTwo.getFrequentPointsForMovie(), is(1));
     assertThat(rentalThree.getFrequentPointsForMovie(), is(1));
   }
+
+  @Test
+  public void getFrequentPointsForNewReleaseMovieLongerThanThreeDays() {
+    NewReleaseMovie movie = new NewReleaseMovie("Interstellar");
+    Rental rental = new Rental(movie, SIX_DAYS_RENTED);
+
+    assertThat(rental.getFrequentPointsForMovie(), is(2));
+  }
 }
