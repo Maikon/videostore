@@ -3,7 +3,7 @@ import java.util.Vector;
 public class Statement {
   private static final int STARTING_AMOUNT = 0;
 
-  public String statement(String name, Vector<Rental> rentals) {
+  public String print(String name, Vector<Rental> rentals) {
     double totalAmount = STARTING_AMOUNT;
     int frequentRenterPoints = STARTING_AMOUNT;
     String result = getStatementHeader(name);
