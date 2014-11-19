@@ -8,8 +8,6 @@ public class NewReleaseMovie extends Movie {
 
   @Override
   public double getAmount(int daysRented) {
-    double amount = 0.0;
-    amount += daysRented * 3;
-    return amount;
+    return daysRented * 3;
   }
 }
