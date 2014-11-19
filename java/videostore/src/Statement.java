@@ -12,7 +12,7 @@ public class Statement {
       double rentalAmount = rental.getAmountForMovie();
       frequentRenterPoints += rental.getFrequentPointsForMovie();
 
-      result += "\t" + rental.getMovie().getTitle() + "\t"
+      result += "\t" + rental.getMovieTitle() + "\t"
         + String.valueOf(rentalAmount) + "\n";
       totalAmount += rentalAmount;
     }
