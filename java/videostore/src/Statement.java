@@ -6,7 +6,7 @@ public class Statement {
   public String statement(String name, Vector<Rental> rentals) {
     double totalAmount = STARTING_AMOUNT;
     int frequentRenterPoints = STARTING_AMOUNT;
-    String result = "Rental Record for " + name + "\n";
+    String result = getStatementHeader(name);
 
     for (Rental rental : rentals) {
       double rentalAmount = rental.getAmountForMovie();
@@ -21,5 +21,9 @@ public class Statement {
     result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
 
     return result;
+  }
+
+  private String getStatementHeader(String name) {
+    return "Rental Record for " + name + "\n";
   }
 }
