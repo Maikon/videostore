@@ -29,12 +29,7 @@ public class Customer {
       Rental rental = (Rental) rentals.nextElement();
 
       double rentalAmount = rental.getAmountForMovie();
-      frequentRenterPoints++;
-
-      if (rental.getMovie().getPriceCode() == NewReleaseMovie.PRICE_CODE
-        && rental.getDaysRented() > ONE_DAY) {
-        frequentRenterPoints++;
-      }
+      frequentRenterPoints += rental.getFrequentPointsForMovie();
 
       result += "\t" + rental.getMovie().getTitle() + "\t"
         + String.valueOf(rentalAmount) + "\n";
